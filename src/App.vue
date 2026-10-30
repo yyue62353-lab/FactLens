@@ -6,6 +6,7 @@ import { ElMessage } from 'element-plus'
 const currentPage = ref('home')
 const inputText = ref('')
 const showResult = ref(false)
+const isChecking = ref(false)
 const historyList = ref([])
 const reportTime = ref('')
 const historyKeyword = ref('')
@@ -78,34 +79,50 @@ watch(
   { deep: true }
 )
 
+// 开始核查
 const checkInfo = async () => {
+  if (isChecking.value) return
+
   if (!inputText.value.trim()) {
     ElMessage.warning('请先输入需要核查的信息')
     return
   }
 
-  currentConclusion.value = 'unknown'
-  activeHelp.value = ''
+  isChecking.value = true
 
-  reportTime.value = new Date().toLocaleString('zh-CN')
+  try {
+    // 模拟核查过程，等待 1.5 秒
+    await new Promise(resolve => setTimeout(resolve, 1500))
 
-  historyList.value.unshift({
-    id: Date.now(),
-    content: inputText.value.trim(),
-    conclusion: '暂无法核实',
-    time: reportTime.value
-  })
+    currentConclusion.value = 'unknown'
+    activeHelp.value = ''
 
-  showResult.value = true
-  currentPage.value = 'home'
+    reportTime.value = new Date().toLocaleString('zh-CN')
 
-  await nextTick()
-  reportCard.value?.scrollIntoView({
-    behavior: 'smooth',
-    block: 'start'
-  })
+    historyList.value.unshift({
+      id: Date.now(),
+      content: inputText.value.trim(),
+      conclusion: '暂无法核实',
+      time: reportTime.value
+    })
 
-  ElMessage.success('已生成演示核查报告')
+    showResult.value = true
+    currentPage.value = 'home'
+
+    await nextTick()
+
+    reportCard.value?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    })
+
+    ElMessage.success('演示核查完成')
+  } catch (error) {
+    console.error('核查过程发生错误：', error)
+    ElMessage.error('核查过程中出现错误，请重试')
+  } finally {
+    isChecking.value = false
+  }
 }
 
 const openHistory = async (item) => {
@@ -251,16 +268,28 @@ const recheckInfo = () => {
             resize="vertical"
             placeholder="例如：每天喝八杯水一定适合所有人……"
             class="fact-input"
+            :disabled="isChecking"
           />
 
           <div class="input-footer">
             <span class="word-count">请尽量提供完整的信息</span>
             <div class="input-actions">
-              <el-button class="clear-input-button" @click="clearInput">
+              <el-button
+                class="clear-input-button"
+                @click="clearInput"
+                :disabled="isChecking"
+              >
                 清空内容
               </el-button>
-              <el-button type="primary" class="primary-button" @click="checkInfo">
-                开始核查 →
+
+              <el-button
+                type="primary"
+                class="primary-button"
+                @click="checkInfo"
+                :loading="isChecking"
+                :disabled="isChecking"
+              >
+                {{ isChecking ? '正在核查…' : '开始核查 →' }}
               </el-button>
             </div>
           </div>
@@ -359,8 +388,14 @@ const recheckInfo = () => {
             <el-button class="copy-button" @click="copyReport">
               复制核查报告
             </el-button>
-            <el-button type="primary" class="primary-button" @click="recheckInfo">
-              重新核查 →
+            <el-button
+              type="primary"
+              class="primary-button"
+              @click="recheckInfo"
+              :loading="isChecking"
+              :disabled="isChecking"
+            >
+              {{ isChecking ? '正在核查…' : '重新核查 →' }}
             </el-button>
           </div>
         </div>
@@ -780,6 +815,12 @@ h1 {
 .primary-button.el-button:hover {
   background: #405f4e;
   border-color: #405f4e;
+}
+
+.primary-button.el-button.is-loading {
+  background: #718b7b;
+  border-color: #718b7b;
+  opacity: 0.85;
 }
 
 .input-tip {
