@@ -13,6 +13,12 @@ const historyKeyword = ref('')
 const reportCard = ref(null)
 const activeHelp = ref('')
 
+// 后端智能体地址：部署时用环境变量 VITE_API_BASE 指向真实后端
+const API_BASE = import.meta.env.VITE_API_BASE || 'http://127.0.0.1:8000'
+
+// 后端返回的完整核查报告
+const report = ref(null)
+
 const conclusions = [
   {
     label: '确认属实',
@@ -79,8 +85,8 @@ watch(
   { deep: true }
 )
 
-// 开始核查
-const checkInfo = async () => {
+// 开始核查（真正调用后端智能体 /api/check）
+const checkInfo = async (fromHistory = false) => {
   if (isChecking.value) return
 
   if (!inputText.value.trim()) {
@@ -91,20 +97,32 @@ const checkInfo = async () => {
   isChecking.value = true
 
   try {
-    // 模拟核查过程，等待 1.5 秒
-    await new Promise(resolve => setTimeout(resolve, 1500))
+    const resp = await fetch(`${API_BASE}/api/check`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text: inputText.value.trim() })
+    })
 
-    currentConclusion.value = 'unknown'
+    if (!resp.ok) {
+      const errText = await resp.text().catch(() => '')
+      throw new Error(`后端返回异常（${resp.status}）${errText.slice(0, 120)}`)
+    }
+
+    const data = await resp.json()
+    report.value = data
+    currentConclusion.value = data.conclusion_type || 'unknown'
     activeHelp.value = ''
 
-    reportTime.value = new Date().toLocaleString('zh-CN')
+    reportTime.value = data.checked_at || new Date().toLocaleString('zh-CN')
 
-    historyList.value.unshift({
-      id: Date.now(),
-      content: inputText.value.trim(),
-      conclusion: '暂无法核实',
-      time: reportTime.value
-    })
+    if (!fromHistory) {
+      historyList.value.unshift({
+        id: Date.now(),
+        content: inputText.value.trim(),
+        conclusion: data.conclusion || '暂无法核实',
+        time: reportTime.value
+      })
+    }
 
     showResult.value = true
     currentPage.value = 'home'
@@ -116,7 +134,7 @@ const checkInfo = async () => {
       block: 'start'
     })
 
-    ElMessage.success('演示核查完成')
+    ElMessage.success('核查完成')
   } catch (error) {
     console.error('核查过程发生错误：', error)
     ElMessage.error('核查过程中出现错误，请重试')
@@ -130,6 +148,7 @@ const openHistory = async (item) => {
   currentConclusion.value = 'unknown'
   reportTime.value = item.time
   activeHelp.value = ''
+  report.value = null
   showResult.value = true
   currentPage.value = 'home'
 
@@ -138,6 +157,9 @@ const openHistory = async (item) => {
     behavior: 'smooth',
     block: 'start'
   })
+
+  // 重新核查该条历史内容
+  checkInfo(true)
 }
 
 const deleteHistory = (id) => {
@@ -167,6 +189,11 @@ const toggleHelp = (type) => {
 const reportText = computed(() => {
   const conclusion = formatConclusion(currentConclusion.value)
 
+  const listText = (arr) => Array.isArray(arr) && arr.length ? arr.map((x, i) => `${i + 1}. ${x}`).join('\n') : '暂无。'
+  const srcText = Array.isArray(report.value?.sources) && report.value.sources.length
+    ? report.value.sources.map((s, i) => `${i + 1}. ${s.title || s.url}  ${s.url}`).join('\n')
+    : '暂无。'
+
   return `FactLens 信息核查报告
 核查时间：${reportTime.value}
 核查结论：${conclusion}
@@ -175,19 +202,22 @@ const reportText = computed(() => {
 ${inputText.value}
 
 二、分析摘要
-系统已接收该信息。目前展示的是前端演示结果，尚未连接真实 AI 分析和外部证据检索服务。
+${report.value?.summary || '暂无。'}
 
 三、分析理由
-正式版本将提取信息中的核心主张，并结合外部资料判断其真实性。在缺少充分证据的情况下，不会直接认定信息为真或假。
+${report.value?.reason || '暂无。'}
 
 四、支持证据
-当前暂无经过核实的支持证据。
+${listText(report.value?.support)}
 
 五、反驳证据
-当前暂无经过核实的反驳证据。
+${listText(report.value?.against)}
 
-六、核查说明
-本报告目前为模拟展示，不代表已经完成真实的信息核查。`
+六、不确定因素
+${listText(report.value?.uncertainties)}
+
+七、参考来源
+${srcText}`
 })
 
 const copyReport = async () => {
@@ -342,25 +372,22 @@ const recheckInfo = () => {
 
           <div class="report-section">
             <h3><span>02</span> 分析摘要</h3>
-            <p>
-              系统已接收该信息。目前展示的是前端演示结果，
-              尚未连接真实 AI 分析和外部证据检索服务。
-            </p>
+            <p>{{ report?.summary || '暂无。' }}</p>
           </div>
 
           <div class="report-section">
             <h3><span>03</span> 分析理由</h3>
-            <p>
-              正式版本将提取信息中的核心主张，并结合外部资料判断其真实性。
-              在缺少充分证据的情况下，不会直接认定信息为真或假。
-            </p>
+            <p>{{ report?.reason || '暂无。' }}</p>
           </div>
 
           <div class="report-section">
             <h3><span>04</span> 支持证据</h3>
             <div class="evidence-box">
               <span class="evidence-label support">支持信息</span>
-              <p>当前暂无经过核实的支持证据，正式版本将展示检索到的相关来源。</p>
+              <ul v-if="report?.support && report.support.length" class="evidence-list">
+                <li v-for="(item, i) in report.support" :key="i">{{ item }}</li>
+              </ul>
+              <p v-else>暂无。</p>
             </div>
           </div>
 
@@ -368,20 +395,47 @@ const recheckInfo = () => {
             <h3><span>05</span> 反驳证据</h3>
             <div class="evidence-box">
               <span class="evidence-label oppose">反驳信息</span>
-              <p>当前暂无经过核实的反驳证据，正式版本将展示相关反面资料。</p>
+              <ul v-if="report?.against && report.against.length" class="evidence-list">
+                <li v-for="(item, i) in report.against" :key="i">{{ item }}</li>
+              </ul>
+              <p v-else>暂无。</p>
             </div>
           </div>
 
           <div class="report-section">
-            <h3><span>06</span> 核查说明</h3>
-            <p>
-              本报告目前为模拟展示，不代表已经完成真实的信息核查。
-              正式版本将结合权威机构、政府网站及其他可靠来源进行分析。
-            </p>
+            <h3><span>06</span> 不确定因素</h3>
+            <div class="evidence-box">
+              <span class="evidence-label oppose">需进一步核实</span>
+              <ul v-if="report?.uncertainties && report.uncertainties.length" class="evidence-list">
+                <li v-for="(item, i) in report.uncertainties" :key="i">{{ item }}</li>
+              </ul>
+              <p v-else>暂无。</p>
+            </div>
           </div>
 
-          <div class="report-notice">
-            当前为前端演示版本，核查结论仅用于展示页面效果。
+          <!-- 参考来源 -->
+          <div v-if="report?.sources && report.sources.length" class="report-section">
+            <h3><span>07</span> 参考来源（{{ report.sources.length }}）</h3>
+            <div class="source-list">
+              <a
+                v-for="(s, i) in report.sources"
+                :key="i"
+                class="source-item"
+                :href="s.url"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span class="source-title">{{ s.title || s.url }}</span>
+                <span class="source-domain">{{ s.domain }}</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="report-notice" v-if="report?.used_llm === false">
+            当前未配置大模型 key，结论为启发式保守判定，仅供参考；配置大模型后核查将更准确。
+          </div>
+          <div class="report-notice" v-else-if="report?.used_llm">
+            结论由 AI 依据检索到的公开来源生成，仅供参考，不构成绝对事实判断。
           </div>
 
           <div class="report-actions">
@@ -1021,6 +1075,57 @@ h1 {
   padding: 13px 15px;
   font-size: 12px;
   line-height: 1.7;
+}
+
+.evidence-list {
+  margin: 0;
+  padding-left: 18px;
+  color: #77847a;
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.evidence-list li {
+  margin-bottom: 4px;
+}
+
+.source-list {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.source-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  background: #f9faf7;
+  border: 1px solid #eef0e9;
+  border-radius: 9px;
+  padding: 11px 14px;
+  text-decoration: none;
+  transition: border-color 0.15s;
+}
+
+.source-item:hover {
+  border-color: #b9cdbf;
+}
+
+.source-title {
+  color: #3f5a49;
+  font-size: 13px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.source-domain {
+  color: #9aa89e;
+  font-size: 11px;
+  white-space: nowrap;
+  background: #eef2ee;
+  padding: 3px 8px;
+  border-radius: 5px;
 }
 
 .report-actions {
