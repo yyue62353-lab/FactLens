@@ -315,7 +315,7 @@ const recheckInfo = () => {
               <el-button
                 type="primary"
                 class="primary-button"
-                @click="checkInfo"
+                @click="checkInfo()"
                 :loading="isChecking"
                 :disabled="isChecking"
               >
