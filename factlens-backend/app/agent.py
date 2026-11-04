@@ -29,7 +29,9 @@ _AGAINST_WORDS = ("不实", "谣言", "辟谣", "不属实", "假的", "误导",
 
 
 def _now() -> str:
-    return datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+    # 固定使用北京时间（UTC+8），避免服务器默认 UTC 导致时间差 8 小时
+    bj_tz = datetime.timezone(datetime.timedelta(hours=8))
+    return datetime.datetime.now(bj_tz).strftime("%Y-%m-%d %H:%M")
 
 
 def _clean_claims(text: str) -> list[str]:
