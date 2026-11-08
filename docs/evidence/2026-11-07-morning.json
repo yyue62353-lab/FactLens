@@ -1,0 +1,55 @@
+[
+  {
+    "input": "地球是太阳系的一颗行星，月球是一颗恒星。",
+    "http": 200,
+    "seconds": 7.488613,
+    "conclusion": "确认不实",
+    "claims": [
+      "地球是太阳系的一颗行星",
+      "月球是一颗恒星"
+    ],
+    "source_count": 8,
+    "reason": "证据显示地球是太阳系的一颗行星，但月球是地球的天然卫星，不是恒星。所有证据来源均未支持月球是恒星的说法。",
+    "deployment": "public API"
+  },
+  {
+    "input": "一个未署名的通知称，某所学校明天下午临时停课。",
+    "http": 200,
+    "seconds": 8.379506,
+    "conclusion": "暂无法核实",
+    "claims": [
+      "某所学校明天下午临时停课",
+      "存在一个未署名的通知声称某所学校明天下午临时停课"
+    ],
+    "source_count": 4,
+    "reason": "证据中包含澳门暴雨停课规定、袁世凯相关历史事件、肖战事件及浙江疫情信息，均未直接支持或反驳待核查通知的真实性。缺乏具体学校停课的通知来源或官方公告作为证据。",
+    "deployment": "public API"
+  },
+  {
+    "test": "real Chrome UI, original screenshots at 03:04 Beijing time",
+    "input": "地球是太阳系的一颗行星。",
+    "conclusion": "确认属实",
+    "sources": [
+      "地球",
+      "流浪地球2",
+      "Google地球",
+      "地球科学"
+    ],
+    "deployment": "public frontend and backend"
+  },
+  {
+    "test": "history persistence and reopening",
+    "matching_items_count_after_refresh": 2,
+    "record_time": "2026-11-07 03:04",
+    "observed_on_reopening": "正在核查…",
+    "matching_items_count_after_recheck": 2,
+    "original_time_still_present": true
+  },
+  {
+    "test": "UI timing separate run",
+    "input": "地球是太阳系的一颗行星。",
+    "click_to_observation_ms": 15806,
+    "report_and_4_sources_visible_at_observation": true,
+    "interpretation": "Upper bound on visibility in this run, not exact first paint or average latency"
+  }
+]
