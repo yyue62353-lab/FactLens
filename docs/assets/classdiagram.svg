@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2480" height="1950" viewBox="0 0 1240 975" role="img"><title>FactLens 本地后端类图</title><defs><marker id="arrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 1 1 L 10 6 L 1 11" fill="none" stroke="#007B72" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+<rect x="0" y="0" width="1240" height="975" rx="0" fill="#FFFFFF" stroke="none" stroke-width="1.7"/>
+<text x="44" y="54" font-family="Hiragino Sans GB, PingFang SC, sans-serif" font-size="35" font-weight="700" fill="#122638" text-anchor="start">FactLens 本地后端类图</text>
+<text x="45" y="89" font-family="Hiragino Sans GB, PingFang SC, sans-serif" font-size="21" font-weight="400" fill="#456170" text-anchor="start">FastAPI 入口、核查编排及主要数据类型。阶段状态来自本地诊断版本。</text>
+<path d="M 44 110 H 1196" fill="none" stroke="#89A8AC" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 501 201 H 714" fill="none" stroke="#007B72" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 6" marker-end="url(#arrow)"/>
+<text x="605" y="190" font-family="Hiragino Sans GB, PingFang SC, sans-serif" font-size="17" font-weight="400" fill="#456170" text-anchor="middle">接收入参</text>
+<path d="M 232 265 V 333" fill="none" stroke="#007B72" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 6" marker-end="url(#arrow)"/>
+<text x="247" y="307" font-family="Hiragino Sans GB, PingFang SC, sans-serif" font-size="17" font-weight="400" fill="#456170" text-anchor="start">调用</text>
+<path d="M 215 454 V 535" fill="none" stroke="#007B72" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 6" marker-end="url(#arrow)"/>
+<text x="228" y="499" font-family="Hiragino Sans GB, PingFang SC, sans-serif" font-size="17" font-weight="400" fill="#456170" text-anchor="start">拆解与判定</text>
+<path d="M 501 390 H 987 V 535" fill="none" stroke="#007B72" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 6" marker-end="url(#arrow)"/>
+<text x="737" y="378" font-family="Hiragino Sans GB, PingFang SC, sans-serif" font-size="17" font-weight="400" fill="#456170" text-anchor="middle">逐条断言检索</text>
+<path d="M 394 609 H 477" fill="none" stroke="#007B72" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 6" marker-end="url(#arrow)"/>
+<text x="435" y="594" font-family="Hiragino Sans GB, PingFang SC, sans-serif" font-size="15" font-weight="400" fill="#456170" text-anchor="middle">读取</text>
+<path d="M 825 609 H 751" fill="none" stroke="#007B72" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 6" marker-end="url(#arrow)"/>
+<text x="789" y="594" font-family="Hiragino Sans GB, PingFang SC, sans-serif" font-size="15" font-weight="400" fill="#456170" text-anchor="middle">读取</text>
+<path d="M 215 679 V 744" fill="none" stroke="#007B72" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 6" marker-end="url(#arrow)"/>
+<text x="230" y="717" font-family="Hiragino Sans GB, PingFang SC, sans-serif" font-size="17" font-weight="400" fill="#456170" text-anchor="start">返回</text>
+<path d="M 1003 679 V 744" fill="none" stroke="#007B72" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 6" marker-end="url(#arrow)"/>
+<text x="1018" y="717" font-family="Hiragino Sans GB, PingFang SC, sans-serif" font-size="17" font-weight="400" fill="#456170" text-anchor="start">创建</text>
+<path d="M 394 813 H 477" fill="none" stroke="#007B72" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="436" y="797" font-family="Hiragino Sans GB, PingFang SC, sans-serif" font-size="15" font-weight="400" fill="#456170" text-anchor="middle">持有 1</text>
+<rect x="46" y="144" width="455" height="121" rx="7" fill="#FFFFFF" stroke="#89A8AC" stroke-width="1.7"/>
+<rect x="48" y="146" width="451" height="60" rx="4" fill="#E7F4F1" stroke="none" stroke-width="1.7"/>
+<text x="60" y="167" font-family="Hiragino Sans GB, PingFang SC, sans-serif" font-size="15" font-weight="600" fill="#007B72" text-anchor="start">«module»</text>
+<text x="60" y="194" font-family="Menlo, monospace" font-size="24" font-weight="700" fill="#122638" text-anchor="start">app.main</text>
+<path d="M 48 207 H 499" fill="none" stroke="#89A8AC" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="60" y="232" font-family="Menlo, monospace" font-size="18" font-weight="400" fill="#203949" text-anchor="start">check(req, response)</text>
+<text x="60" y="256" font-family="Menlo, monospace" font-size="18" font-weight="400" fill="#203949" text-anchor="start">health()</text>
+<rect x="716" y="144" width="455" height="121" rx="7" fill="#FFFFFF" stroke="#89A8AC" stroke-width="1.7"/>
+<rect x="718" y="146" width="451" height="60" rx="4" fill="#F1F5F6" stroke="none" stroke-width="1.7"/>
+<text x="730" y="167" font-family="Hiragino Sans GB, PingFang SC, sans-serif" font-size="15" font-weight="600" fill="#456170" text-anchor="start">«Pydantic 模型»</text>
+<text x="730" y="194" font-family="Menlo, monospace" font-size="24" font-weight="700" fill="#122638" text-anchor="start">CheckRequest</text>
+<path d="M 718 207 H 1169" fill="none" stroke="#89A8AC" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="730" y="232" font-family="Menlo, monospace" font-size="18" font-weight="400" fill="#203949" text-anchor="start">text: str</text>
+<rect x="46" y="334" width="455" height="120" rx="7" fill="#FFFFFF" stroke="#89A8AC" stroke-width="1.7"/>
+<rect x="48" y="336" width="451" height="60" rx="4" fill="#E7F4F1" stroke="none" stroke-width="1.7"/>
+<text x="60" y="357" font-family="Hiragino Sans GB, PingFang SC, sans-serif" font-size="15" font-weight="600" fill="#007B72" text-anchor="start">«module»</text>
+<text x="60" y="384" font-family="Menlo, monospace" font-size="24" font-weight="700" fill="#122638" text-anchor="start">app.agent</text>
+<path d="M 48 397 H 499" fill="none" stroke="#89A8AC" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="60" y="422" font-family="Menlo, monospace" font-size="18" font-weight="400" fill="#203949" text-anchor="start">check(text, *, request_id)</text>
+<rect x="40" y="537" width="354" height="142" rx="7" fill="#FFFFFF" stroke="#89A8AC" stroke-width="1.7"/>
+<rect x="42" y="539" width="350" height="60" rx="4" fill="#E7F4F1" stroke="none" stroke-width="1.7"/>
+<text x="54" y="560" font-family="Hiragino Sans GB, PingFang SC, sans-serif" font-size="15" font-weight="600" fill="#007B72" text-anchor="start">«module»</text>
+<text x="54" y="587" font-family="Menlo, monospace" font-size="24" font-weight="700" fill="#122638" text-anchor="start">app.llm</text>
+<path d="M 42 600 H 392" fill="none" stroke="#89A8AC" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="54" y="625" font-family="Menlo, monospace" font-size="16" font-weight="400" fill="#203949" text-anchor="start">decompose_claims(text, …)</text>
+<text x="54" y="649" font-family="Menlo, monospace" font-size="16" font-weight="400" fill="#203949" text-anchor="start">judge(text, claims_evidence, …)</text>
+<rect x="478" y="537" width="271" height="142" rx="7" fill="#FFFFFF" stroke="#89A8AC" stroke-width="1.7"/>
+<rect x="480" y="539" width="267" height="60" rx="4" fill="#F1F5F6" stroke="none" stroke-width="1.7"/>
+<text x="492" y="560" font-family="Hiragino Sans GB, PingFang SC, sans-serif" font-size="15" font-weight="600" fill="#456170" text-anchor="start">«class»</text>
+<text x="492" y="587" font-family="Menlo, monospace" font-size="24" font-weight="700" fill="#122638" text-anchor="start">Config</text>
+<path d="M 480 600 H 747" fill="none" stroke="#89A8AC" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="492" y="625" font-family="Menlo, monospace" font-size="15" font-weight="400" fill="#203949" text-anchor="start">LLM_MODEL</text>
+<text x="492" y="649" font-family="Menlo, monospace" font-size="15" font-weight="400" fill="#203949" text-anchor="start">LLM_TIMEOUT_SECONDS</text>
+<text x="492" y="673" font-family="Menlo, monospace" font-size="15" font-weight="400" fill="#203949" text-anchor="start">SEARCH_RESULTS_PER_CLAIM</text>
+<rect x="826" y="537" width="366" height="142" rx="7" fill="#FFFFFF" stroke="#89A8AC" stroke-width="1.7"/>
+<rect x="828" y="539" width="362" height="60" rx="4" fill="#E7F4F1" stroke="none" stroke-width="1.7"/>
+<text x="840" y="560" font-family="Hiragino Sans GB, PingFang SC, sans-serif" font-size="15" font-weight="600" fill="#007B72" text-anchor="start">«module»</text>
+<text x="840" y="587" font-family="Menlo, monospace" font-size="24" font-weight="700" fill="#122638" text-anchor="start">app.searcher</text>
+<path d="M 828 600 H 1190" fill="none" stroke="#89A8AC" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="840" y="625" font-family="Menlo, monospace" font-size="16" font-weight="400" fill="#203949" text-anchor="start">search(query, num)</text>
+<text x="840" y="649" font-family="Menlo, monospace" font-size="16" font-weight="400" fill="#203949" text-anchor="start">search_assertion(assertion)</text>
+<rect x="40" y="746" width="354" height="148" rx="7" fill="#FFFFFF" stroke="#89A8AC" stroke-width="1.7"/>
+<rect x="42" y="748" width="350" height="60" rx="4" fill="#F1F5F6" stroke="none" stroke-width="1.7"/>
+<text x="54" y="769" font-family="Hiragino Sans GB, PingFang SC, sans-serif" font-size="15" font-weight="600" fill="#456170" text-anchor="start">«dataclass»</text>
+<text x="54" y="796" font-family="Menlo, monospace" font-size="24" font-weight="700" fill="#122638" text-anchor="start">LLMResult</text>
+<path d="M 42 809 H 392" fill="none" stroke="#89A8AC" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="54" y="834" font-family="Menlo, monospace" font-size="18" font-weight="400" fill="#203949" text-anchor="start">value: Any</text>
+<text x="54" y="858" font-family="Menlo, monospace" font-size="18" font-weight="400" fill="#203949" text-anchor="start">status: CallStatus</text>
+<rect x="478" y="746" width="271" height="148" rx="7" fill="#FFFFFF" stroke="#89A8AC" stroke-width="1.7"/>
+<rect x="480" y="748" width="267" height="60" rx="4" fill="#F1F5F6" stroke="none" stroke-width="1.7"/>
+<text x="492" y="769" font-family="Hiragino Sans GB, PingFang SC, sans-serif" font-size="15" font-weight="600" fill="#456170" text-anchor="start">«dataclass»</text>
+<text x="492" y="796" font-family="Menlo, monospace" font-size="24" font-weight="700" fill="#122638" text-anchor="start">CallStatus</text>
+<path d="M 480 809 H 747" fill="none" stroke="#89A8AC" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="492" y="834" font-family="Menlo, monospace" font-size="15.8" font-weight="400" fill="#203949" text-anchor="start">stage, status, attempted</text>
+<text x="492" y="858" font-family="Menlo, monospace" font-size="15.8" font-weight="400" fill="#203949" text-anchor="start">duration_ms, http_status</text>
+<text x="492" y="882" font-family="Menlo, monospace" font-size="15.8" font-weight="400" fill="#203949" text-anchor="start">error_code, message</text>
+<rect x="826" y="746" width="366" height="148" rx="7" fill="#FFFFFF" stroke="#89A8AC" stroke-width="1.7"/>
+<rect x="828" y="748" width="362" height="60" rx="4" fill="#F1F5F6" stroke="none" stroke-width="1.7"/>
+<text x="840" y="769" font-family="Hiragino Sans GB, PingFang SC, sans-serif" font-size="15" font-weight="600" fill="#456170" text-anchor="start">«class»</text>
+<text x="840" y="796" font-family="Menlo, monospace" font-size="24" font-weight="700" fill="#122638" text-anchor="start">Source</text>
+<path d="M 828 809 H 1190" fill="none" stroke="#89A8AC" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="840" y="834" font-family="Menlo, monospace" font-size="17" font-weight="400" fill="#203949" text-anchor="start">title, url, snippet, domain</text>
+<text x="840" y="858" font-family="Menlo, monospace" font-size="17" font-weight="400" fill="#203949" text-anchor="start">to_dict(): dict</text>
+<path d="M 45 935 H 102" fill="none" stroke="#007B72" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 6" marker-end="url(#arrow)"/>
+<text x="117" y="941" font-family="Hiragino Sans GB, PingFang SC, sans-serif" font-size="18" font-weight="400" fill="#456170" text-anchor="start">依赖（调用、读配置或创建）</text>
+<path d="M 497 935 H 554" fill="none" stroke="#007B72" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="568" y="941" font-family="Hiragino Sans GB, PingFang SC, sans-serif" font-size="18" font-weight="400" fill="#456170" text-anchor="start">属性关联</text>
+</svg>

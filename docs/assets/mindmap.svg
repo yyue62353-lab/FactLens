@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2320" height="1408" viewBox="0 0 1160 704" role="img"><title>FactLens 功能结构</title><defs><marker id="arrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 1 1 L 10 6 L 1 11" fill="none" stroke="#007B72" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+<rect x="0" y="0" width="1160" height="704" rx="0" fill="#FFFFFF" stroke="none" stroke-width="1.7"/>
+<text x="48" y="59" font-family="Hiragino Sans GB, PingFang SC, sans-serif" font-size="35" font-weight="700" fill="#122638" text-anchor="start">FactLens 功能结构</text>
+<path d="M 48 84 H 1112" fill="none" stroke="#89A8AC" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 238 382 H 279" fill="none" stroke="#007B72" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 279 154 V 610" fill="none" stroke="#007B72" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="46" y="332" width="192" height="100" rx="12" fill="#122638" stroke="none" stroke-width="1.7"/>
+<text x="142" y="375" font-family="Hiragino Sans GB, PingFang SC, sans-serif" font-size="30" font-weight="700" fill="#ffffff" text-anchor="middle">FactLens</text>
+<text x="142" y="407" font-family="Hiragino Sans GB, PingFang SC, sans-serif" font-size="20" font-weight="400" fill="#B6E5DE" text-anchor="middle">信息核查</text>
+<path d="M 279 154 H 320" fill="none" stroke="#007B72" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="279" cy="154" r="4.2" fill="#007B72"/>
+<rect x="320" y="120" width="210" height="68" rx="10" fill="#E7F4F1" stroke="#AFD9D1" stroke-width="1.7"/>
+<text x="425" y="163" font-family="Hiragino Sans GB, PingFang SC, sans-serif" font-size="25" font-weight="700" fill="#122638" text-anchor="middle">说法输入</text>
+<path d="M 530 154 H 564 M 564 135 V 173 M 564 135 H 591 M 564 173 H 591" fill="none" stroke="#89A8AC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="606" y="142" font-family="Hiragino Sans GB, PingFang SC, sans-serif" font-size="22" font-weight="400" fill="#203949" text-anchor="start">输入中文说法，界面限制 2000 字</text>
+<text x="606" y="180" font-family="Hiragino Sans GB, PingFang SC, sans-serif" font-size="22" font-weight="400" fill="#203949" text-anchor="start">拦截空白输入，提示用户补充内容</text>
+<path d="M 279 268 H 320" fill="none" stroke="#007B72" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="279" cy="268" r="4.2" fill="#007B72"/>
+<rect x="320" y="234" width="210" height="68" rx="10" fill="#E7F4F1" stroke="#AFD9D1" stroke-width="1.7"/>
+<text x="425" y="277" font-family="Hiragino Sans GB, PingFang SC, sans-serif" font-size="25" font-weight="700" fill="#122638" text-anchor="middle">智能体核查</text>
+<path d="M 530 268 H 564 M 564 249 V 287 M 564 249 H 591 M 564 287 H 591" fill="none" stroke="#89A8AC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="606" y="256" font-family="Hiragino Sans GB, PingFang SC, sans-serif" font-size="22" font-weight="400" fill="#203949" text-anchor="start">拆分可检索断言，逐条查找来源</text>
+<text x="606" y="294" font-family="Hiragino Sans GB, PingFang SC, sans-serif" font-size="22" font-weight="400" fill="#203949" text-anchor="start">综合证据形成判定，模型失败时使用规则</text>
+<path d="M 279 382 H 320" fill="none" stroke="#007B72" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="279" cy="382" r="4.2" fill="#007B72"/>
+<rect x="320" y="348" width="210" height="68" rx="10" fill="#E7F4F1" stroke="#AFD9D1" stroke-width="1.7"/>
+<text x="425" y="391" font-family="Hiragino Sans GB, PingFang SC, sans-serif" font-size="25" font-weight="700" fill="#122638" text-anchor="middle">报告与来源</text>
+<path d="M 530 382 H 564 M 564 363 V 401 M 564 363 H 591 M 564 401 H 591" fill="none" stroke="#89A8AC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="606" y="370" font-family="Hiragino Sans GB, PingFang SC, sans-serif" font-size="22" font-weight="400" fill="#203949" text-anchor="start">展示四值结论、理由和不确定因素</text>
+<text x="606" y="408" font-family="Hiragino Sans GB, PingFang SC, sans-serif" font-size="22" font-weight="400" fill="#203949" text-anchor="start">列出来源标题和域名，支持跳转原文</text>
+<path d="M 279 496 H 320" fill="none" stroke="#007B72" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="279" cy="496" r="4.2" fill="#007B72"/>
+<rect x="320" y="462" width="210" height="68" rx="10" fill="#E7F4F1" stroke="#AFD9D1" stroke-width="1.7"/>
+<text x="425" y="505" font-family="Hiragino Sans GB, PingFang SC, sans-serif" font-size="25" font-weight="700" fill="#122638" text-anchor="middle">历史记录</text>
+<path d="M 530 496 H 564 M 564 477 V 515 M 564 477 H 591 M 564 515 H 591" fill="none" stroke="#89A8AC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="606" y="484" font-family="Hiragino Sans GB, PingFang SC, sans-serif" font-size="22" font-weight="400" fill="#203949" text-anchor="start">在浏览器保存原文、结论和核查时间</text>
+<text x="606" y="522" font-family="Hiragino Sans GB, PingFang SC, sans-serif" font-size="22" font-weight="400" fill="#203949" text-anchor="start">打开历史项时重新发起核查</text>
+<path d="M 279 610 H 320" fill="none" stroke="#007B72" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="279" cy="610" r="4.2" fill="#007B72"/>
+<rect x="320" y="576" width="210" height="68" rx="10" fill="#E7F4F1" stroke="#AFD9D1" stroke-width="1.7"/>
+<text x="425" y="609" font-family="Hiragino Sans GB, PingFang SC, sans-serif" font-size="25" font-weight="700" fill="#122638" text-anchor="middle">调用诊断</text>
+<text x="425" y="633" font-family="Hiragino Sans GB, PingFang SC, sans-serif" font-size="16" font-weight="400" fill="#007B72" text-anchor="middle">本地版本</text>
+<path d="M 530 610 H 564 M 564 591 V 629 M 564 591 H 591 M 564 629 H 591" fill="none" stroke="#89A8AC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="606" y="598" font-family="Hiragino Sans GB, PingFang SC, sans-serif" font-size="22" font-weight="400" fill="#203949" text-anchor="start">分别记录拆解和判定阶段的调用状态</text>
+<text x="606" y="636" font-family="Hiragino Sans GB, PingFang SC, sans-serif" font-size="22" font-weight="400" fill="#203949" text-anchor="start">按请求编号查看失败原因、耗时和日志</text>
+</svg>
